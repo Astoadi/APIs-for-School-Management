@@ -7,7 +7,8 @@ const schema = joi.object({
 })
 
 async function validateSchool(req, res, next) {
-    let { error } = schema.validate(req.body);
+    let toValidateData=req.body || {}
+    let { error } = schema.validate(toValidateData);
     if( error ){
         return res.status(400).json({message:"incorrect input body"});    
     }else{
